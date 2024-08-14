@@ -4,6 +4,7 @@ import AdminLogin from "./components/AdminLogin";
 import AdminResetPassword from "./components/AdminResetPassword";
 import AdminRecoverPassword from "./components/AdminRecoverPassword";
 
+
 import "./App.css";
 
 import AdminNav from './components/adminNav'
@@ -14,6 +15,8 @@ const router = createBrowserRouter([
   { path: "/admin-login", element: <AdminLogin /> },
   { path: "/admin-reset-password", element: <AdminResetPassword /> },
   { path: "/admin-recover-password", element: <AdminRecoverPassword/> },
+  { path: "/reported", element: <AdminNav/> },
+ 
 ]);
 
  

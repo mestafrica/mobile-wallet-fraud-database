@@ -33,3 +33,16 @@ export const fraudReportSchema = Joi.object({
       return sanitizedValue;
     }),
 });
+
+export const checkNumberSchema = Joi.object({
+  phoneNumber: Joi.string()
+    .pattern(/^0\d{9}$/)
+    .message("Invalid phone number format.")
+    .custom((value, helpers) => {
+      const sanitizedValue = sanitizeHtml(value, {
+        allowedTags: [], // Disallow all HTML tags
+        allowedAttributes: {}, // Disallow all attributes
+      });
+      return sanitizedValue;
+    }),
+});

@@ -11,6 +11,7 @@ const userSchema = new Schema(
     resetToken: { type: String },
     resetTokenExpiresAt: { type: Date },
     fraudReport: [{ type: Types.ObjectId, ref: "FraudReport" }],
+    apiKey: [{ type: Types.ObjectId, ref: "ApiKey" }],
   },
   {
     timestamps: true,
