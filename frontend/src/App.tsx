@@ -1,3 +1,4 @@
+
 import Home from "./pages/home"
 
 
@@ -9,6 +10,7 @@ function App() {
     <div>
 
       <Home/>
+      
     </div>
 
   )
