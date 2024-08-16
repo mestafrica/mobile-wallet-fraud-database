@@ -2,6 +2,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from './pages/home';
 import AccountPage from './pages/accountpage';
+
 import SearchModal from './components/searchmodal';
 import SubmitReport from './components/submitreport';
 import UpVote from './components/upvote';
@@ -12,7 +13,7 @@ import Verification from './pages/auth/verification';
 import SetNewPassword from './pages/auth/newPassword';
 
 const router = createBrowserRouter([    
-        { path:"/" ,element:<Home /> },
+        { path:"/", element:<Home /> },
         { path:"/account", element:<AccountPage /> },
         { path:"/search", element:<SearchModal />} ,
         { path:"/submit", element:<SubmitReport /> },

@@ -9,8 +9,8 @@ const SearchModal = () => {
             <Navbar />
 
             <div className='flex items-center gap-5 pl-28 pt-8'>
-                <ArrowLeft className=' text-blue-900' />
-                <h1 className='text-[23px] font-semibold'>Search Results</h1>
+            <a href="/"><ArrowLeft className=' text-blue-900' /></a>
+                <a href="/"><h1 className='text-[23px] font-semibold'>Search Results</h1></a>
             </div>
 
             <div className="flex justify-center items-center min-h-screen pt-20">
@@ -39,7 +39,7 @@ const SearchModal = () => {
 
                     <div className='flex justify-between'>
                         <h1 className='font-semibold text-[17px] text-red-700'>Report as incorrect</h1>
-                        <h1 className='font-semibold text-[17px] text-blue-700 '>Flag number</h1>
+                        <a href="/upvote"><h1 className='font-semibold text-[17px] text-blue-700 '>Flag number</h1></a>
                     </div>
 
                 </div>

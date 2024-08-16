@@ -63,30 +63,30 @@ export const generateApiKey = async (req, res, next) => {
   }
 };
 
-
-
-
-export const getApiKeys = async (req, res, next)=>{
+export const getApiKeys = async (req, res, next) => {
   try {
     const id = req.session?.user?.id || req?.user?.id;
 
-        const user = await UserModel.findById(id);
-        if (!user) {
-          return res.status(404).send("User not found");
-        }
-    const allApiKeys = await ApiKeyModel.find({user:id})
-    if(!allApiKeys){
-      return res.status(404).json({ message: "You do not have any API keys or do not have permission to view them." });
+    const user = await UserModel.findById(id);
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+    const allApiKeys = await ApiKeyModel.find({ user: id });
+    if (!allApiKeys) {
+      return res
+        .status(404)
+        .json({
+          message:
+            "You do not have any API keys or do not have permission to view them.",
+        });
     }
     res.status(200).json({ message: "success", apiKey: allApiKeys });
   } catch (error) {
-    next(error)
+    next(error);
   }
-  
-
+};
 
 export const updateApiDomain = async (req, res, next) => {
-
   try {
     // Validate the request body
     const { error, value } = apiDomainSchema.validate(req.body);
@@ -101,7 +101,8 @@ export const updateApiDomain = async (req, res, next) => {
     const user = await UserModel.findById(id);
     if (!user) {
       return res.status(404).send("User not found");
-      
+    }
+
     // Check if the domain already exists in the user's API keys
 
     const existingDomain = await ApiKeyModel.findOne({
@@ -140,19 +141,22 @@ export const updateApiDomain = async (req, res, next) => {
     console.error(error);
     next(error);
   }
-};  
+};
 
-
-export const deleteApi = async(req, res, next) => {
+export const deleteApi = async (req, res, next) => {
   try {
     const id = req.session?.user?.id || req?.user?.id;
     console.log("User ID:", id);
     console.log("API Key ID:", req.params.id);
-    const apiKey = await ApiKeyModel.findOne({_id: req.params.id ,user: id});
+    const apiKey = await ApiKeyModel.findOne({ _id: req.params.id, user: id });
     console.log("API Key Found:", apiKey);
 
-    if(!apiKey){
-      return res.status(404).send("You Do Not Have Permission To Delete This API Key or It Does Not Exist.");
+    if (!apiKey) {
+      return res
+        .status(404)
+        .send(
+          "You Do Not Have Permission To Delete This API Key or It Does Not Exist."
+        );
     }
     // DELETE THE API KEY
     await ApiKeyModel.findByIdAndDelete(req.params.id);
@@ -160,12 +164,8 @@ export const deleteApi = async(req, res, next) => {
     user.apiKey.pull(req.params.id);
     await user.save();
 
-    res.status(200).json({message: 'API Key Deleted Successfully'});
+    res.status(200).json({ message: "API Key Deleted Successfully" });
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
-
-
-
-
+};

@@ -9,7 +9,7 @@ const AccountPage = () => {
             <Navbar />
 
             <div className='flex items-center gap-2 pl-36 pt-8'>
-                <ArrowLeft className='w-14 text-blue-900' />
+                <a href="/"><ArrowLeft className='w-14 text-blue-900' /></a>
                 <h1 className='text-[23px] font-bold'>My account</h1>
             </div>
 

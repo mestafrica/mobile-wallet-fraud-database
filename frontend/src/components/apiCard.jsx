@@ -1,15 +1,25 @@
 import { Copy, Edit, Plus, Trash2 } from "lucide-react";
 import K from "../constant/constant";
 import Button from "./button";
+import { useState } from "react";
+
+import ApiKey from "../pages/apikey";
 
 const ApiCard = () => {
+    const [modal, setModal] = useState(false);
+    
+    const toggleModal = () => {
+        setModal(!modal);
+    };
+
     const getStatusClasses = (status) => {
         switch (status) {
             case 'Active':
                 return 'bg-green-200 border-green-400';
             case 'Inactive':
                 return 'bg-gray-200 border-gray-400';
-            
+            default:
+                return '';
         }
     };
 
@@ -18,10 +28,26 @@ const ApiCard = () => {
             <div className="overflow-x-auto">
                 <div className="flex justify-between items-center mb-4">
                     <h3 className="font-bold">4 API Keys</h3>
-                    <Button>
+                    <Button onClick={toggleModal}>
                         <Plus className="w-4 h-4 mr-2" /> Create new API Key
                     </Button>
                 </div>
+                
+            
+                {modal && (
+                    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+                        <div className="bg-white p-6 rounded shadow-lg w-1/2">
+                            <div className="flex justify-between items-center mb-4">
+                                <h4 className="text-lg font-semibold">Create New API Key</h4>
+                                <Button onClick={toggleModal} className="text-red-500">
+                                    Close
+                                </Button>
+                            </div>
+                            <ApiKey />
+                        </div>
+                    </div>
+                )}
+                
                 <table className="min-w-full bg-white border border-gray-200 shadow-md rounded">
                     <thead>
                         <tr className="bg-[#ECEFF7]">

@@ -5,17 +5,18 @@ import ApiCard from '../components/apiCard';
 import Navbar from '../components/Navbar';
 import ReportedCard from '../components/reportedCard';
 import DocumentCard from '../components/documentCard';
+import Button from "../components/button";
 
 const Home = () => {
+    
     const [visibleCard, setVisibleCard] = useState('API-keys');
-
     const handleLinkClick = (cardId) => {
         setVisibleCard(cardId);
     };
 
     return (
         <div>
-           <Navbar/>
+            <Navbar />
 
             <h1 className='text-center justify-normal text-3xl font-semibold mt-6 '>Real-time database to curb <br /> mobile money fraud.</h1>
 
@@ -23,6 +24,14 @@ const Home = () => {
                 <div className='w-full max-w-md'>
                     <SearchInput />
                 </div>
+                <a href="/search">
+                <button
+                  type="button"
+                  className="rounded-md bg-white px-2.5 py-2.5 ml-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                >
+                  Search
+                </button>
+                </a>
             </div>
 
             <div className='mt-5'>
