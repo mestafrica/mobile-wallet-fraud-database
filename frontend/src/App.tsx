@@ -1,5 +1,5 @@
 //src/App.tsx
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from './pages/home';
 import AccountPage from './pages/accountpage';
 import SearchModal from './components/searchmodal';
@@ -11,24 +11,21 @@ import RecoverPassword from './pages/auth/recoverPassword';
 import Verification from './pages/auth/verification';
 import SetNewPassword from './pages/auth/newPassword';
 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/account" element={<AccountPage />} />
-        <Route path="/search" element={<SearchModal />} />
-        <Route path="/submit" element={<SubmitReport />} />
-        <Route path="/upvote" element={<UpVote />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/forgot-password" element={<RecoverPassword />} />
-        <Route path="/verification" element={<Verification />} />
-        <Route path="/new-password" element={<SetNewPassword />} />
+const router = createBrowserRouter([    
+        { path:"/" ,element:<Home /> },
+        { path:"/account", element:<AccountPage /> },
+        { path:"/search", element:<SearchModal />} ,
+        { path:"/submit", element:<SubmitReport /> },
+        { path:"/upvote", element:<UpVote /> },
+        { path:"/login", element:<Login />},
+        { path:"/signup", element:<Signup />} ,
+        { path:"/forgot-password", element:<RecoverPassword />} ,
+        { path:"/verification", element:<Verification />},
+        { path:"/new-password", element:<SetNewPassword />} ,
+]);
 
-      </Routes>
-    </Router>
-  );
-}
-
-export default App;
+  function App() {
+    return <RouterProvider router={router} />;
+  }
+  
+  export default App;
