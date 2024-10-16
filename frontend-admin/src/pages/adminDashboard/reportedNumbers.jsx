@@ -22,7 +22,7 @@ const ReportedNumbersContent = () => {
   ];
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 8;
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
   const handlePageChange = (page) => {
@@ -31,8 +31,8 @@ const ReportedNumbersContent = () => {
 
   const currentData = data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
   return (
-    <div className="mt-1 bg-[#F9FAFB] h-screen">
-      <div className='flex justify-center items-center pt-6 space-x-72 '>
+    <div className=" bg-[#F9FAFB] h-[100vh] ">
+      <div className='flex justify-center items-center pt-6 space-x-48 '>
 
         <div className='font-semibold text-xl'>100 Reported Cases</div>
 
@@ -41,7 +41,7 @@ const ReportedNumbersContent = () => {
         </div>
 
         <div className='flex gap-2 '>
-          <SearchInput className="w-full h-10 max-w-xl border border-gray-400 rounded-md shadow-sm pl-6 " />
+          <SearchInput  />
 
           <select className='border border-gray-400 w-24 h-10 rounded-md shadow-sm' name="category" id="category">
             <option>All Status</option>
@@ -73,9 +73,9 @@ const ReportedNumbersContent = () => {
         <table className="w-[98%] bg-white border-l-1 border-r-1 border border-gray-300 rounded-lg overflow-hidden">
           <thead className='h-12 flex-1 gap-6 '>
             <tr>
-              <th className="py-2 px-4  bg-gray-200 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider border-b border-gray-300">  NAME</th>
+              <th className="py-2 px-6  bg-gray-200 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider border-b border-gray-300"><input type="checkbox" name="checkbox" id="checkbox" className='w-8  border'/>   NAME</th>
               <th className="py-2 px-4 bg-gray-200 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider border-b border-gray-300">PHONE NUMBER</th>
-              <th className="py-2 px-4 bg-gray-200 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider border-b border-gray-300">NETWORK</th>
+              <th className="py-2 px-4 bg-gray-200 text-left  text-sm font-semibold text-gray-700 uppercase tracking-wider border-b border-gray-300">NETWORK</th>
               <th className="py-2 px-4 bg-gray-200 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider border-b border-gray-300">DATE REPORTED</th>
               <th className="py-2 px-4 bg-gray-200 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider border-b border-gray-300">STATUS</th>
               <th className="py-2 px-4 pl-20 bg-gray-200 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider border-b border-gray-300">COMMENT</th>
@@ -84,18 +84,21 @@ const ReportedNumbersContent = () => {
           <tbody>
             {currentData.map((item, index) => (
               <tr key={index} className=''>
-                <td className="py-2 px-4 border-b border-gray-300">   {item.name}</td>
+                <td className="py-2 px-6 border-b border-gray-300"><input type="checkbox" name="checkbox" id="checkbox" className='w-8  border'/>    {item.name}</td>
                 <td className="py-2 px-4 border-b border-gray-300">{item.phone}</td>
-                <td className="py-2 px-4 border-b border-gray-300">{item.network}</td>
+                <td className="py-2 px-4 border-b  pl-7 border-gray-300">{item.network}</td>
                 <td className="py-2 px-4 border-b border-gray-300">{item.date}</td>
                 <td className="py-0 px-0 border-b pl-3 border-gray-300">
                   <span className={`inline-block px-2 py-1 text-xs font-medium w-16 text-center rounded-lg ${item.status === 'Pending' ? 'text-black bg-[#FDF7B2]' : 'text-green-800 bg-green-100'}`}>
                     {item.status}
                   </span>
                 </td>
-                <td className="py-2 px-4 border-b  border-gray-300 pl-20 flex gap-6">
-                  {item.comment} <ExternalLink className='text-blue-600 w-5' /> <Trash2 className='text-red-700 w-5' />
-                </td>
+                <td className="py-2 px-4 border-b border-gray-300 pl-20 text-left">
+  <span className="inline-block">{item.comment}</span>
+  <ExternalLink className='text-blue-600 w-5 inline-block ml-4' />
+  <Trash2 className='text-red-700 w-5 inline-block ml-4' />
+</td>
+
               </tr>
             ))}
             <tr>
